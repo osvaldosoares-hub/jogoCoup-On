@@ -1,11 +1,11 @@
+import styles from './page.module.css'
 
-
-export default function DashBoard() {
+export default function Home() {
   return (
-    <main >
-      <div >
+    
+    <div >
        hello word
-      </div>
-    </main>
+    </div>
+    
   )
 }
