@@ -1,7 +1,7 @@
 'use client'
-import './styles.css'
+
 import styles from './page.module.css'
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material'
+import { Box, Button, FormControl, InputLabel, MenuItem, Select} from '@mui/material'
 import * as React from 'react';
 export default function App(){
     const [jogo, setJogo] = React.useState('');
@@ -11,6 +11,7 @@ export default function App(){
     }
     
     return (
+        <Box className={styles.body}>
     <Box sx={{
         display:'flex',
         justifyContent:'space-between',
@@ -59,6 +60,7 @@ export default function App(){
         </Box>
 
 
+        </Box>
         </Box>)
         
 }
