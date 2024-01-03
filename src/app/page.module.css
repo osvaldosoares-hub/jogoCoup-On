@@ -3,8 +3,8 @@
   display: flex;
   justify-content: center;
   margin-top: 6em;
+  font-family: 'JetBrains Mono', monospace;
 }
 .header{
-  font-family: 'JetBrains Mono', monospace;
   font-size: 24px;
 }
