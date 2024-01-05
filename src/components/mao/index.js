@@ -9,7 +9,7 @@ export default function Mao({Maocartas,setBaralhojgo}){
         setOpenResumo((e)=> !e);
         console.log(openResumo)
     }
-    console.log(Maocartas)
+    //console.log(Maocartas)
     return(
         <Box sx={{textAlign:'center',}}>
             {openResumo? 
@@ -36,7 +36,7 @@ export default function Mao({Maocartas,setBaralhojgo}){
             </Box>
         <Box sx={{display:'flex', justifyContent:'center'}}>
         {Maocartas.map(cartas=>{
-            return <img src={cartas.img}  alt={cartas.Nome} style={{ width: '195px', height: '314px',}} />
+            return <img src={cartas.img}  alt={cartas.Nome} key={cartas.id} style={{ width: '195px', height: '314px',}} />
             
             
         })}

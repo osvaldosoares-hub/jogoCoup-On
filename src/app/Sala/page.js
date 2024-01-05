@@ -6,7 +6,8 @@ import people from '../../../public/assets/people.png'
 import roles from '../../../public/assets/roles.png'
 import Link from "next/link";
 import Mao from "@/components/mao";
-import React from "react";
+import React, { useEffect } from "react";
+
 
 const Baralho=[
   {
@@ -99,41 +100,48 @@ const Baralho=[
      Nome:'embaixador', 
      img:'/assets/embaixador.jpg', 
    },
-  
 ]
 
 export default function Sala() {
   const [IniciarJgo, setIniciarjgo]= React.useState(false);
   const [Baralhojgo, setBaralhojgo] = React.useState(Baralho)
   const [Maocartas ,setMaoCartas] = React.useState([]);
+  
   const handleIniciar = ()=>{
-
+    
     setIniciarjgo(true)
-    if(Baralhojgo.length > 2 && Maocartas.length==0){
+    if(Baralhojgo.length > 2){
       const novasCartas = [];
+      
       for(let i = 0; i<2;i++){
         const CartaRandom = Math.floor(Math.random() * Baralhojgo.length);
-        console.log(CartaRandom)
+       
         const CartaEscolhida = Baralhojgo[CartaRandom];
-
-        const novoBaralho = [...Baralhojgo.slice(0,CartaRandom), ...Baralhojgo.slice(CartaRandom + 1)]
-        //console.log(novoBaralho)
-        setBaralhojgo(novoBaralho);
-
+       
+        
+        setBaralhojgo((prevBaralho)=> prevBaralho.filter((cartas) => cartas.id != CartaEscolhida.id))
 
         novasCartas.push(CartaEscolhida);
       }
+      
       setMaoCartas((prev)=>[...prev, ...novasCartas]);
     }
     
-    
   }
+  useEffect(() => {
+    // Lógica que depende do estado atualizado
+    console.log(Baralhojgo);
+  }, [Baralhojgo]);
   const handleReiniciar = ()=>{
       const Maovazia=[];
-      for(let i; i<2; i++){
-        Maovazia.push(Maocartas[i]);
-        setMaoCartas
+      const cartas=[]
+      for(let i = 0; i< Maocartas.length;i++){
+        cartas.push(Maocartas[i]);
       }
+      setMaoCartas(Maovazia)
+      setBaralhojgo((prev)=> [...prev,...cartas])
+
+      handleIniciar();
   }
   return (
     <Box sx={{width:'40%'}}>
