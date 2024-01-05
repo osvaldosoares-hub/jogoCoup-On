@@ -19,32 +19,87 @@ const Baralho=[
       id:1,
       carta:11,
       Nome:'duque', 
-      img:'/assets/duque.png', 
+      img:'/assets/duque.jpg', 
   },
   {
     id:2,
-    carta:10,
-    Nome:'assasino1', 
-    img:'/assets/assasino.png', 
-   },
-   {
-       id:3,
-       carta:11,
-       Nome:'duque1', 
-       img:'/assets/duque.png', 
-   },
-   {
+    carta:12,
+    Nome:'condessa', 
+    img:'/assets/condessa.jpg', 
+  },
+  {
+    id:3,
+    carta:13,
+    Nome:'capitão', 
+    img:'/assets/capitao.jpg', 
+  },
+  {
     id:4,
+    carta:14,
+    Nome:'embaixador', 
+    img:'/assets/embaixador.jpg', 
+  },
+  {
+    id:5,
     carta:10,
-    Nome:'assasino2', 
+    Nome:'assasino', 
     img:'/assets/assasino.png', 
    },
    {
-       id:5,
+       id:6,
        carta:11,
-       Nome:'duque2', 
-       img:'/assets/duque.png', 
+       Nome:'duque', 
+       img:'/assets/duque.jpg', 
    },
+   {
+     id:7,
+     carta:12,
+     Nome:'condessa', 
+     img:'/assets/condessa.jpg', 
+   },
+   {
+     id:8,
+     carta:13,
+     Nome:'capitão', 
+     img:'/assets/capitao.jpg', 
+   },
+   {
+     id:9,
+     carta:14,
+     Nome:'embaixador', 
+     img:'/assets/embaixador.jpg', 
+   },
+   {
+    id:10,
+    carta:10,
+    Nome:'assasino', 
+    img:'/assets/assasino.png', 
+   },
+   {
+       id:11,
+       carta:11,
+       Nome:'duque', 
+       img:'/assets/duque.jpg', 
+   },
+   {
+     id:12,
+     carta:12,
+     Nome:'condessa', 
+     img:'/assets/condessa.jpg', 
+   },
+   {
+     id:13,
+     carta:13,
+     Nome:'capitão', 
+     img:'/assets/capitao.jpg', 
+   },
+   {
+     id:14,
+     carta:14,
+     Nome:'embaixador', 
+     img:'/assets/embaixador.jpg', 
+   },
+  
 ]
 
 export default function Sala() {
@@ -54,7 +109,7 @@ export default function Sala() {
   const handleIniciar = ()=>{
 
     setIniciarjgo(true)
-    if(Baralhojgo.length > 2){
+    if(Baralhojgo.length > 2 && Maocartas.length==0){
       const novasCartas = [];
       for(let i = 0; i<2;i++){
         const CartaRandom = Math.floor(Math.random() * Baralhojgo.length);
@@ -62,7 +117,7 @@ export default function Sala() {
         const CartaEscolhida = Baralhojgo[CartaRandom];
 
         const novoBaralho = [...Baralhojgo.slice(0,CartaRandom), ...Baralhojgo.slice(CartaRandom + 1)]
-        console.log(novoBaralho)
+        //console.log(novoBaralho)
         setBaralhojgo(novoBaralho);
 
 
@@ -72,6 +127,13 @@ export default function Sala() {
     }
     
     
+  }
+  const handleReiniciar = ()=>{
+      const Maovazia=[];
+      for(let i; i<2; i++){
+        Maovazia.push(Maocartas[i]);
+        setMaoCartas
+      }
   }
   return (
     <Box sx={{width:'40%'}}>
@@ -96,13 +158,19 @@ export default function Sala() {
             <Box><Image src={roles}/></Box>
           </Box>
         </Box>
-        <Box sx={{textAlign:'center',marginTop:'13em'}}>
-            <Button variant="contained" sx={{width:'40%', height:'44px',backgroundColor:'#474747', fontFamily:'JetBrains Mono', margin:'2em' ,'&:hover': {
+        <Box sx={{textAlign:'center',marginTop:'10em'}}>
+        {!IniciarJgo
+        ?<Button variant="contained" sx={{width:'40%', height:'44px',backgroundColor:'#474747', fontFamily:'JetBrains Mono', margin:'2em' ,'&:hover': {
           backgroundColor: '#727272',
           },}}  onClick={handleIniciar}>
                     Começar a jogar
             </Button>
-        </Box>    
+            :<Button variant="contained" sx={{width:'40%', height:'44px',backgroundColor:'#474747', fontFamily:'JetBrains Mono', margin:'2em' ,'&:hover': {
+          backgroundColor: '#727272',
+          },}}  onClick={handleReiniciar}>
+                    Reiniciar
+            </Button>} 
+        </Box> 
         {IniciarJgo ?<Mao Maocartas={Maocartas} setBaralhojgo={setBaralhojgo}/>:<></>}
     </Box>
     
