@@ -19,6 +19,9 @@ export default function Mao({Maocartas,setBaralhojgo}){
         setPositionCard(position)
         setActionCard(cardSelected)
     }
+    const handleTrocaCard = (idCard)=>{
+
+    }
     const handleCloseActions = ()=>{
         const closeAction=[]
         setActionCard(closeAction);
@@ -77,26 +80,29 @@ export default function Mao({Maocartas,setBaralhojgo}){
             <Box sx={{
                 position:'relative',
                 left:PositionCard?'-10%':'10%',
-                top:'13%',
+                top:'12%',
                
             }}>
                 <Box sx={{
                     textAlign:"start",
                     
                 }}>
-                    <img src='/assets/close.png'   alt='close' onClick={handleCloseActions}/>
+                    <img src='/assets/close.png'   alt='close' onClick={()=> handleCloseActions(actionCard[0].id)}/>
                 <Box sx={{
                     textAlign:"start",
                     marginLeft:'1em',
-                    color:'#FFFFFF'
+                    color:'#FFFFFF',
+                    cursor:'pointer'
                 }}>
                     Tirar carta
                 </Box>
                 <Box sx={{
                     textAlign:"start",
                     marginLeft:'2em',
-                    color:'#FF0000'
-                }}>
+                    color:'#FF0000',
+                    cursor:'pointer'
+                }}
+                onClick={handleTrocaCard}>
                     Escolher outra carta
                 </Box>
                 <Box sx={{
