@@ -5,7 +5,7 @@ import React from 'react';
 
 export default function Mao({Maocartas,setBaralhojgo}){
     const [openResumo, setOpenResumo]= React.useState(false);
-    const [actionCard, setActionCard] = React.useState(false);
+    const [actionCard, setActionCard] = React.useState([]);
     const [PositionCard, setPositionCard]= React.useState(0);
     const handleAction = (idCard)=>{
         const cardSelected = Maocartas.filter((card) => card.id == idCard)
@@ -19,7 +19,10 @@ export default function Mao({Maocartas,setBaralhojgo}){
         setPositionCard(position)
         setActionCard(cardSelected)
     }
-   
+    const handleCloseActions = ()=>{
+        const closeAction=[]
+        setActionCard(closeAction);
+    }
     const headleResumo =()=>{
         setOpenResumo((e)=> !e);
         console.log(openResumo)
@@ -51,13 +54,18 @@ export default function Mao({Maocartas,setBaralhojgo}){
             </Box>
         <Box sx={{display:'flex', justifyContent:'space-around'}}>
         {Maocartas.map(cartas=>{
-            return <img src={cartas.img}   alt={cartas.Nome} key={cartas.id}  style={{ width: '195px', height: '314px',}} onClick={()=>handleAction(cartas.id)}/>
+            return <img src={cartas.img}   alt={cartas.Nome} key={cartas.id}  style={{ width: '195px', height: '314px'}} onClick={()=>handleAction(cartas.id)}/>
             
             
         })}
-        {actionCard ?<Box sx={{
+        
+        
+        </Box>
+        {actionCard.length>0 ?
+        <Box sx={{
              position:'absolute',
              display:'flex',
+             flexDirection:'column',
              justifyContent:'center',
              alignItems:'center',
              backgroundColor:'rgba(0, 0, 0, 0.8)',
@@ -66,14 +74,46 @@ export default function Mao({Maocartas,setBaralhojgo}){
              width:'100vw',
              height:'100vh',
         }}>
-            <Box>
-            </Box>  
+            <Box sx={{
+                position:'relative',
+                left:PositionCard?'-10%':'10%',
+                top:'13%',
+               
+            }}>
+                <Box sx={{
+                    textAlign:"start",
+                    
+                }}>
+                    <img src='/assets/close.png'   alt='close' onClick={handleCloseActions}/>
+                <Box sx={{
+                    textAlign:"start",
+                    marginLeft:'1em',
+                    color:'#FFFFFF'
+                }}>
+                    Tirar carta
+                </Box>
+                <Box sx={{
+                    textAlign:"start",
+                    marginLeft:'2em',
+                    color:'#FF0000'
+                }}>
+                    Escolher outra carta
+                </Box>
+                <Box sx={{
+                    textAlign:"start",
+                    marginLeft:'3em',
+                    color:'#FFFFFF'
+                }}>
+                    Virar carta
+                </Box>
 
+            </Box>  
+      
         {actionCard.map(card=>{ 
-            return <img src={card.img}   alt={card.Nome} key={card.id}  style={{ width: '195px', height: '314px', position:'relative', left:PositionCard?'-10%':'10%',top:'17%',borderRadius:"20px"}}/>
-            })}</Box>:<></>}
-        
+            return <img src={card.img}   alt={card.Nome} key={card.id}  style={{ width: '195px', height: '314px', borderRadius:"20px"}}/>
+            })}
         </Box>
+            </Box>:<></>}
         </Box>
     );
 }

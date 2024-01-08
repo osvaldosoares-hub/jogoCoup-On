@@ -100,6 +100,36 @@ const Baralho=[
      Nome:'embaixador', 
      img:'/assets/embaixador.jpg', 
    },
+   {
+    id:15,
+    carta:10,
+    Nome:'assasino', 
+    img:'/assets/assasino.png', 
+   },
+   {
+       id:16,
+       carta:11,
+       Nome:'duque', 
+       img:'/assets/duque.jpg', 
+   },
+   {
+     id:17,
+     carta:12,
+     Nome:'condessa', 
+     img:'/assets/condessa.jpg', 
+   },
+   {
+     id:18,
+     carta:13,
+     Nome:'capitão', 
+     img:'/assets/capitao.jpg', 
+   },
+   {
+     id:19,
+     carta:14,
+     Nome:'embaixador', 
+     img:'/assets/embaixador.jpg', 
+   },
 ]
 
 export default function Sala() {
@@ -120,7 +150,7 @@ export default function Sala() {
        
         
         setBaralhojgo((prevBaralho)=> prevBaralho.filter((cartas) => cartas.id != CartaEscolhida.id))
-
+        
         novasCartas.push(CartaEscolhida);
       }
       
